@@ -11,14 +11,26 @@
 <div id="area"></div>
 <script type="text/babel">
    var HelloWorld = React.createClass({
-   		render:function(){
+
+         propTypes:{
+               name: React.PropTypes.string.isRequired
+
+            },
+
+         getDefaultProps: function(){
+            return{
+               name:'Scott'
+            }
+         },
+
+   		render: function(){
    			return(
-   					<h1>Hello World</h1>
+   					<h1>Hello {this.props.name}</h1>
    				)
    		}
    });
 	ReactDOM.render(
-			<HelloWorld />,
+			<HelloWorld/>,
 			document.getElementById('area')
 		);
 </script>
