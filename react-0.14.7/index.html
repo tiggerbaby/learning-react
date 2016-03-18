@@ -13,8 +13,8 @@
    var HelloWorld = React.createClass({
 
          propTypes:{
-               name: React.PropTypes.string.isRequired
-
+               name: React.PropTypes.string.isRequired,
+               isPerson: React.PropTypes.bool
             },
 
          getDefaultProps: function(){
@@ -24,13 +24,40 @@
          },
 
    		render: function(){
+            var greeting = "world";
+
+            if(this.props.isPerson){
+               greeting = (<Person name={this.props.name} />)
+            }
    			return(
-   					<h1>Hello {this.props.name}</h1>
+   					<h1>Hello {greeting}</h1>
    				)
    		}
    });
+   
+     var Person = React.createClass({
+
+         propTypes:{
+               name: React.PropTypes.string.isRequired,
+            },
+
+         getDefaultProps: function(){
+            return{
+               name:'Scott'
+            }
+         },
+
+         render: function(){
+            return(
+                  <span>{this.props.name}</span>
+               )
+         }
+   });
+
+   
+
 	ReactDOM.render(
-			<HelloWorld/>,
+			<HelloWorld name="Alice" isPerson={false} />,
 			document.getElementById('area')
 		);
 </script>
